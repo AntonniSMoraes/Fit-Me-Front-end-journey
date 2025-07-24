@@ -1,24 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { get_restaurant } from './API';
 
 function App() {
+  const [test, setTest] = useState();
+
+  const teste = async () => {
+    const response = await get_restaurant;
+    console.log(response)
+    setTest(response);
+  }
+
+  useEffect(()=>{
+    teste();
+  },[])
+
+  console.log(test)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
     </div>
   );
 }
