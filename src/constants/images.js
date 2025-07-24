@@ -17,3 +17,7 @@ export const facebook_logo = "https://res.cloudinary.com/dzok2qpsz/image/upload/
 export const twitter_logo = "https://res.cloudinary.com/dzok2qpsz/image/upload/v1753323771/twitter_icon_f8fhj4.svg"
 
 export const instagram_logo = "https://res.cloudinary.com/dzok2qpsz/image/upload/v1753323770/instagram_icon_vjnxd2.svg"
+
+export const banana = "https://res.cloudinary.com/dzok2qpsz/image/upload/v1753323739/banana_cha1ih.svg"
+
+export const maca = "https://res.cloudinary.com/dzok2qpsz/image/upload/v1753323739/ma%C3%A7a_ps7oem.svg"
