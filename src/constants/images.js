@@ -21,3 +21,7 @@ export const instagram_logo = "https://res.cloudinary.com/dzok2qpsz/image/upload
 export const banana = "https://res.cloudinary.com/dzok2qpsz/image/upload/v1753323739/banana_cha1ih.svg"
 
 export const maca = "https://res.cloudinary.com/dzok2qpsz/image/upload/v1753323739/ma%C3%A7a_ps7oem.svg"
+
+export const green_star = "https://res.cloudinary.com/dzok2qpsz/image/upload/v1753323718/greenStar_okun0r.svg"
+
+export const delivery = "https://res.cloudinary.com/dzok2qpsz/image/upload/v1753323718/Group_mr8glw.svg"

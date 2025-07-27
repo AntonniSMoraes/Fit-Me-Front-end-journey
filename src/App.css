@@ -6,10 +6,12 @@
   --cor-cinza80: #202020;
   --cor-salmao: #FFEDD0;
   --cor-salmao2: #ffd0d0;
+  --cor-card: #F8F8F8;
 }
 
 .App{
   display: flex;
   flex-direction: column;
+  font-family: "Poppins", sans-serif;
   width: 100vw;
 }
