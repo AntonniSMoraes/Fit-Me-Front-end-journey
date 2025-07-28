@@ -6,9 +6,11 @@ import { get_restaurant } from "../../API";
 import { useEffect, useState } from "react";
 import { Restaurant } from "../../API/interfaces";
 import { Card } from "../../components/card";
+import { useNavigate } from "react-router";
 
 const Home = () => {
     const [ restaurant, setRestaurant ] = useState<Restaurant[]>([]);
+    const nav = useNavigate();
 
     const getRestaurant = async() => {
         const restaurantData = await get_restaurant();
@@ -20,6 +22,10 @@ const Home = () => {
         getRestaurant();
     },[])
     
+    const handleClickRestaurantButton = (id : string) => {
+        nav("restaurant/"+ id);
+    }
+
     return (
         <Container>
             <SectionOne>
@@ -39,7 +45,9 @@ const Home = () => {
                                     deliveryTime={item.deliveryTime}
                                     image={item.image}
                                     location={item.location}
-                                    topDishes={item.topDishes} />
+                                    topDishes={item.topDishes}
+                                    NavToPage={handleClickRestaurantButton}
+                                    />
                         )) 
                     }
                 </CardContainer>

@@ -24,4 +24,8 @@ export const maca = "https://res.cloudinary.com/dzok2qpsz/image/upload/v17533237
 
 export const green_star = "https://res.cloudinary.com/dzok2qpsz/image/upload/v1753323718/greenStar_okun0r.svg"
 
+export const transparent_star = "https://res.cloudinary.com/dzok2qpsz/image/upload/v1753323721/star_niakbi.svg"
+
 export const delivery = "https://res.cloudinary.com/dzok2qpsz/image/upload/v1753323718/Group_mr8glw.svg"
+
+export const percent_off = "https://res.cloudinary.com/dzok2qpsz/image/upload/v1753323720/off_tpuvie.svg"
