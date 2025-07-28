@@ -10,3 +10,11 @@ export const get_restaurant = () => axios.get(URL+"/fitmes")
     .catch(function(error){
         console.error(error);
     })
+
+export const get_restaurant_by_id = (id : any) => axios.get(URL+"/fitme/"+id)
+    .then(function(response){
+        return response.data;
+    })
+    .catch(function(error){
+        console.error(error);
+    })

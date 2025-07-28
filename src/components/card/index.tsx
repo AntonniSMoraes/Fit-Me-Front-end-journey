@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { Restaurant } from "../../API/interfaces"
 import { delivery, green_star } from "../../constants/images";
 
+interface CardProps extends Restaurant {
+    NavToPage: (id: string) => void;
+}
+
 export const Card = ({
     objectId,
     name ,
@@ -9,9 +13,13 @@ export const Card = ({
     deliveryTime,
     image,
     location,
-    topDishes} : Restaurant) => {
+    topDishes,
+    NavToPage} : CardProps,
+    ) => {
         return(
-            <Container>
+            <Container 
+                onClick={() => NavToPage(objectId)}
+            >
                 <Imagem src={image}/>
                 <h2 style={{
                     alignSelf:"flex-start",
