@@ -118,13 +118,15 @@ const RestaurantPage = () => {
                         )
                     }
                 </div>
-                {showDish && 
+                {showDish !== undefined && showDish[0] !== undefined ? 
                     <DishInfo
                         name={showDish[0].name}
                         description={showDish[0].description}
                         image={showDish[0].image}
                         price={showDish[0].price}
                     />
+                    :
+                    <p style={{padding: '1rem', alignSelf: 'center'}}>Prato não encontrado</p>
                 }
             </DishList>
         </Container>
