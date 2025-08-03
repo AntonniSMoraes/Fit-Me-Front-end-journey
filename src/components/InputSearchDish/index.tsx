@@ -1,14 +1,26 @@
 import styled from "styled-components";
 import { search } from "../../constants/images";
+import { useState } from "react";
 
-export const InputSearchDish = () => {
+interface setInput {
+    setDishName: (info : String) => void;
+}
+
+export const InputSearchDish = ( { setDishName }: setInput) => {
+    const [ value, setValue ] = useState<String>('');
+
+    const handleSearch = (value : String) => {
+        setDishName(value);
+    }
+
     return(
         <>
             <Container
                 type="text"
                 placeholder="Search for dish"
+                onChange={e => setValue(e.target.value)}
             />
-            <SearchButton>
+            <SearchButton onClick={() => handleSearch(value)}>
                 <img src={search} />
             </SearchButton>
         </>
@@ -22,6 +34,7 @@ const Container = styled.input`
     height: 50px;
     font-size: 1.4rem;
     padding: 0 2rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 `
 
 const SearchButton = styled.button`

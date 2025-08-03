@@ -5,19 +5,25 @@ import { Restaurant } from "../../API/interfaces";
 import { get_restaurant_by_id } from "../../API";
 import { green_star, percent_off, transparent_star } from "../../constants/images";
 import { InputSearchDish } from "../../components/InputSearchDish";
+import { DishInfo } from "../../components/dishInfo";
 
 const RestaurantPage = () => {
     const [ restaurant, setRestaurant ] = useState<Restaurant>();
+    const [ dishName, setDishName ] = useState<String | undefined>();
     const { slug } = useParams();
+    let showDish = restaurant?.topDishes.filter(dish => dish.name.toLowerCase() === dishName?.toLowerCase());
 
     const callRestaurant = async () => {
         const response = await get_restaurant_by_id(slug);
         setRestaurant(response)
+        setDishName(response.topDishes[0].name)
     }
 
     useEffect(() => {
         callRestaurant();
     },[slug])
+
+    console.log(dishName)
 
 
     return(
@@ -62,7 +68,7 @@ const RestaurantPage = () => {
                         top: '5rem',
                         position: 'relative'
                     }}>
-                        <InputSearchDish />
+                        <InputSearchDish setDishName={setDishName}/>
                         <button style={{
                             width: '10rem',
                             border: 'none',
@@ -71,6 +77,7 @@ const RestaurantPage = () => {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
+                            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
                             gap: '.5rem'
                         }}>
                             <img src={transparent_star} />
@@ -94,6 +101,32 @@ const RestaurantPage = () => {
                     </div>
                 </div>
             </GrayStrip>
+            <DishList>
+                <div
+                    style={{
+                        flexDirection: 'column',
+                        borderRight: '1px solid',
+                        borderColor: 'gray'
+                }}>
+                    <p style={{color: 'var(--cor-laranja)', margin: '0'}}>Recommended</p>
+                    {
+                        restaurant && restaurant.topDishes.map((dish, index) => 
+                            <button key={index}
+                                style={{color: 'var(--cor-cinza40)'}}
+                                onClick={() => {setDishName(dish.name)}}
+                            >{dish.name}</button>
+                        )
+                    }
+                </div>
+                {showDish && 
+                    <DishInfo
+                        name={showDish[0].name}
+                        description={showDish[0].description}
+                        image={showDish[0].image}
+                        price={showDish[0].price}
+                    />
+                }
+            </DishList>
         </Container>
     );
 }
@@ -125,5 +158,24 @@ const GrayStrip = styled.section`
 
     & img {
         width: 20px;
+    }
+`
+
+const DishList = styled.section`
+    display: flex;
+    padding: 6rem 1rem;
+
+    & div{
+        display: flex;
+        gap: 10px;
+        padding: 0 1rem;
+    }
+
+    & button {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        text-align: start;
+        font-size: 1rem;
     }
 `
