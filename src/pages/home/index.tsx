@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { Restaurant } from "../../API/interfaces";
 import { Card } from "../../components/card";
 import { useNavigate } from "react-router";
+import HourglassLoader from "../../components/hourGlass";
 
 const Home = () => {
     const [ restaurant, setRestaurant ] = useState<Restaurant[]>([]);
@@ -36,6 +37,12 @@ const Home = () => {
                 <h1>Restaurants</h1>
                 <CardContainer>
                     {
+                        restaurant.length === 0 ?
+                        <>
+                            <h3>Carregand...</h3>
+                            <HourglassLoader />
+                        </>
+                        :
                         restaurant.map((item, index) => (
                                 <Card
                                     key={index}
