@@ -6,6 +6,8 @@ import { get_restaurant_by_id } from "../../API";
 import { green_star, percent_off, transparent_star } from "../../constants/images";
 import { InputSearchDish } from "../../components/InputSearchDish";
 import { DishInfo } from "../../components/dishInfo";
+import { Cart } from "../../components/cart";
+import HourglassLoader from "../../components/hourGlass";
 
 const RestaurantPage = () => {
     const [ restaurant, setRestaurant ] = useState<Restaurant>();
@@ -23,112 +25,120 @@ const RestaurantPage = () => {
         callRestaurant();
     },[slug])
 
-    console.log(dishName)
-
-
     return(
         <Container>
-            <GrayStrip>
-                <div>
-                    <img src={restaurant?.image}
-                        style={{
-                            width: '300px',
-                            height: '250px',
-                            borderRadius: '1rem'
-                        }}
-                    />
-                </div>
-                <div style={{display: 'flex'}}>
-                    <h1 style={{alignSelf: 'flex-start'}}>{restaurant?.name}</h1>
-                    <p>{restaurant?.location}</p>
-                    <div style={{flexDirection: 'row', gap: '1rem'}}>
-                       
-                        <div  style={{borderRight: '1px solid'}}>
-                            <div style={{flexDirection: 'row', gap: '.5rem'}}>
-                                <img src={green_star}/>
-                                <p style={{margin: 0}}>{restaurant?.rating}</p>
-                            </div>
-                            <p style={{marginTop: '10px'}}>100+ ratings</p>
-                        </div>
-
-                        <div  style={{borderRight: '1px solid'}}>
-                            <p style={{margin: 0}}>{restaurant?.deliveryTime} mins</p>
-                            <p style={{marginTop: '12px'}}>Delivery Time</p>
-                        </div>
-
+            {
+                restaurant === null || undefined ?
+                <>
+                    <h3>Carregand...</h3>
+                    <HourglassLoader />
+                </>
+                :
+                <>
+                    <GrayStrip>
                         <div>
-                            <p style={{margin: 0}}>₹200</p>
-                            <p style={{marginTop: '12px'}}>Cost for two</p>
+                            <img src={restaurant?.image}
+                                style={{
+                                    width: '300px',
+                                    height: '250px',
+                                    borderRadius: '1rem'
+                                }}
+                            />
                         </div>
+                        <div style={{display: 'flex'}}>
+                            <h1 style={{alignSelf: 'flex-start'}}>{restaurant?.name}</h1>
+                            <p>{restaurant?.location}</p>
+                            <div style={{flexDirection: 'row', gap: '1rem'}}>
+                            
+                                <div  style={{borderRight: '1px solid'}}>
+                                    <div style={{flexDirection: 'row', gap: '.5rem'}}>
+                                        <img src={green_star}/>
+                                        <p style={{margin: 0}}>{restaurant?.rating}</p>
+                                    </div>
+                                    <p style={{marginTop: '10px'}}>100+ ratings</p>
+                                </div>
 
-                    </div>
-                    <div style={{
-                        flexDirection: 'row',
-                        gap: '2rem',
-                        top: '5rem',
-                        position: 'relative'
-                    }}>
-                        <InputSearchDish setDishName={setDishName}/>
-                        <button style={{
-                            width: '10rem',
-                            border: 'none',
+                                <div  style={{borderRight: '1px solid'}}>
+                                    <p style={{margin: 0}}>{restaurant?.deliveryTime} mins</p>
+                                    <p style={{marginTop: '12px'}}>Delivery Time</p>
+                                </div>
+
+                                <div>
+                                    <p style={{margin: 0}}>₹200</p>
+                                    <p style={{marginTop: '12px'}}>Cost for two</p>
+                                </div>
+
+                            </div>
+                            <div style={{
+                                flexDirection: 'row',
+                                gap: '2rem',
+                                top: '5rem',
+                                position: 'relative'
+                            }}>
+                                <InputSearchDish setDishName={setDishName}/>
+                                <button style={{
+                                    width: '10rem',
+                                    border: 'none',
+                                    borderRadius: '1rem',
+                                    backgroundColor: 'white',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+                                    gap: '.5rem'
+                                }}>
+                                    <img src={transparent_star} />
+                                    <p>Favourite</p>
+                                </button>
+                            </div>
+                        </div>
+                        <div style={{
+                            border: '2px dashed var(--cor-laranja)',
                             borderRadius: '1rem',
-                            backgroundColor: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
-                            gap: '.5rem'
+                            padding: '0 0 1rem 2rem'
                         }}>
-                            <img src={transparent_star} />
-                            <p>Favourite</p>
-                        </button>
-                    </div>
-                </div>
-                <div style={{
-                    border: '2px dashed var(--cor-laranja)',
-                    borderRadius: '1rem',
-                    padding: '0 0 1rem 2rem'
-                }}>
-                    <h1 style={{color: 'var(--cor-laranja)'}}>Offers</h1>
-                    <div style={{flexDirection: 'row', gap: '.8rem'}}>
-                        <img src={percent_off}/>
-                        <p>50% off up to ₹100 | Use code TRYNEW</p>
-                    </div>
-                    <div style={{flexDirection: 'row', gap: '.8rem'}}>
-                        <img src={percent_off}/>
-                        <p>20% off | Use code PARTY</p>
-                    </div>
-                </div>
-            </GrayStrip>
-            <DishList>
-                <div
-                    style={{
-                        flexDirection: 'column',
-                        borderRight: '1px solid',
-                        borderColor: 'gray'
-                }}>
-                    <p style={{color: 'var(--cor-laranja)', margin: '0'}}>Recommended</p>
-                    {
-                        restaurant && restaurant.topDishes.map((dish, index) => 
-                            <button key={index}
-                                style={{color: 'var(--cor-cinza40)'}}
-                                onClick={() => {setDishName(dish.name)}}
-                            >{dish.name}</button>
-                        )
-                    }
-                </div>
-                {showDish !== undefined && showDish[0] !== undefined ? 
-                    <DishInfo
-                        name={showDish[0].name}
-                        description={showDish[0].description}
-                        image={showDish[0].image}
-                        price={showDish[0].price}
-                    />
-                    :
-                    <p style={{padding: '1rem', alignSelf: 'center'}}>Prato não encontrado</p>
-                }
-            </DishList>
+                            <h1 style={{color: 'var(--cor-laranja)'}}>Offers</h1>
+                            <div style={{flexDirection: 'row', gap: '.8rem'}}>
+                                <img src={percent_off}/>
+                                <p>50% off up to ₹100 | Use code TRYNEW</p>
+                            </div>
+                            <div style={{flexDirection: 'row', gap: '.8rem'}}>
+                                <img src={percent_off}/>
+                                <p>20% off | Use code PARTY</p>
+                            </div>
+                        </div>
+                    </GrayStrip>
+                    <DishList>
+                        <div
+                            style={{
+                                flexDirection: 'column',
+                                borderRight: '1px solid',
+                                borderColor: 'gray'
+                        }}>
+                            <p style={{color: 'var(--cor-laranja)', margin: '0'}}>Recommended</p>
+                            {
+                                restaurant && restaurant.topDishes.map((dish, index) => 
+                                    <button key={index}
+                                        style={{color: 'var(--cor-cinza40)'}}
+                                        onClick={() => {setDishName(dish.name)}}
+                                    >{dish.name}</button>
+                                )
+                            }
+                        </div>
+                        {showDish !== undefined && showDish[0] !== undefined ? 
+                            <DishInfo
+                                name={showDish[0].name}
+                                description={showDish[0].description}
+                                image={showDish[0].image}
+                                price={showDish[0].price}
+                            />
+                            :
+                            <p style={{padding: '1rem', alignSelf: 'center'}}>Prato não encontrado</p>
+                        }
+                        <Cart />
+                    </DishList>
+                </>
+            }
         </Container>
     );
 }
@@ -166,7 +176,8 @@ const GrayStrip = styled.section`
 const DishList = styled.section`
     display: flex;
     padding: 6rem 1rem;
-
+    gap: 3rem;
+    
     & div{
         display: flex;
         gap: 10px;
