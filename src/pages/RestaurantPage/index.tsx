@@ -29,10 +29,10 @@ const RestaurantPage = () => {
         <Container>
             {
                 restaurant === null || undefined ?
-                <>
-                    <h3>Carregand...</h3>
+                <section style={{alignItems: "center", display: "flex", flexDirection: "column", gap: "2rem"}}>
+                    <h3>Carregando...</h3>
                     <HourglassLoader />
-                </>
+                </section>
                 :
                 <>
                     <GrayStrip>
