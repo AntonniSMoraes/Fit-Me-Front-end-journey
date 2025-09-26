@@ -68,7 +68,7 @@ const Container = styled.button`
 const Imagem = styled.img`
     border-radius: 1rem;
     width: 170px;
-    height: 170px;
+    height: 120px;
 `
 
 const NewLine = styled.section`

@@ -1,9 +1,14 @@
 import styled from "styled-components"
+import { OrangeButton } from "../orangeButton";
 
 export const Cart = () => {
     return(
         <Container>
-            <h3>Cart</h3>
+            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                <p>Cart</p>
+                <p>0 items</p>
+            </div>
+            <OrangeButton name="Checkout"/>
         </Container>
     );
 }
@@ -11,5 +16,10 @@ export const Cart = () => {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    width: 365px;
+    width: 30%;
+
+    & p {
+        font-size: 24px;
+        font-weight: 500;
+    }
 `
