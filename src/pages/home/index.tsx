@@ -38,7 +38,7 @@ const Home = () => {
                 <CardContainer>
                     {
                         restaurant.length === 0 ?
-                        <section style={{alignItems: "center", display: "flex", flexDirection: "column", gap: "2rem"}}>
+                        <section style={{alignItems: "center", justifyContent: "center", display: "flex", flexDirection: "column", gap: "2rem"}}>
                             <h3>Carregando...</h3>
                             <HourglassLoader />
                         </section>
@@ -70,23 +70,43 @@ const Container = styled.main`
     flex-direction: column;
     gap: 8rem;
     align-items: center;
-    width: calc(100% - 36rem);
-    padding: 12rem 18rem;
+    width: calc(100% - 2rem);
+    padding: 12rem 1rem;
+    overflow-x: hidden;
+
+    @media(max-width: 600px) {
+        padding: 1rem 1rem;
+    }
 `
 
 const SectionOne = styled.section`
     display: flex;
     width: 100%;
     justify-content: space-between;
+    @media(max-width: 950px) {
+        align-items: center;
+        flex-direction: column;
+    }
 `
 
 const SectionTwo = styled.section`
     display: flex;
     flex-direction: column;
     width: 100%;
+
+    @media(max-width: 600px) {
+        align-items: center;
+    }
 `
+
 const CardContainer = styled.section`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
+    justify-content: center;
+
+    @media(max-width: 1000px) {
+        display: flex;
+        flex-wrap: wrap;
+    }
 `

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import styleAnim from "./Anim.module.css";
 import { frame1, frame2, frame3 } from "../../constants/images";
 import { useWindowSize } from "../customHooks/useWindowSize";
 import styled from "styled-components";
@@ -8,7 +7,8 @@ const images = [frame1, frame2, frame3];
 
 export default function Home_Animation() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const slideOffset = useWindowSize().width < 768 ? 100 : 80;
+  const slideOffset = useWindowSize().width < 800 ? 100 : 80;
+  const windowWidth = useWindowSize().width;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -25,10 +25,13 @@ export default function Home_Animation() {
           key={i}
           style={{ transform: `translateX(-${currentIndex * slideOffset}%)` }}
         >
-          <img src={image} alt={`Frame ${i + 1}`}
-              style={{
-                transform: i === currentIndex ? 'scale(1)' : 'scale(0.8)',
-              }}
+          <img
+            src={image}
+            alt={`Frame ${i + 1}`}
+            style={{
+              transform: i === currentIndex ? "scale(1)" : "scale(0.8)",
+              marginLeft: windowWidth < 950 ? "100%" : "auto",
+            }}
           />
         </ImageWrapper>
       ))}
@@ -47,12 +50,17 @@ const AnimationBox = styled.div`
     margin-top: -10%;
     width: 400px;
   }
-`
+
+  @media (max-width: 950px) {
+    margin-top: 0;
+    align-self: center;
+  }
+`;
 
 const ImageWrapper = styled.div`
   flex-shrink: 0;
   width: 270px;
-  transition: transform 1s ease-in-out; 
+  transition: transform 1s ease-in-out;
 
   & img {
     width: 280px;
@@ -62,7 +70,7 @@ const ImageWrapper = styled.div`
     transition: transform 0.5s ease-in-out;
   }
 
-  @media(max-width: 800px) {
+  @media (max-width: 800px) {
     width: 300px;
   }
-`
+`;
