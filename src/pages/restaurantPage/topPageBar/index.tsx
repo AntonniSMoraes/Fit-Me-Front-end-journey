@@ -137,10 +137,14 @@ const Fraction = styled.article`
 `;
 
 const Division = styled.div`
-  width: 2px;
+  padding: .1rem;
   background-color: white;
-  height: 100%;
-  margin: 0 1rem;
+  height: 60px;
+  margin: 0 3rem;
+  
+  @media(max-width: 1260px) {
+    margin: 0 1rem;
+  }
 `;
 
 const FractionColumn = styled.article`
