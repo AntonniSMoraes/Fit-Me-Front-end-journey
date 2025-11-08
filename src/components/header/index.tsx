@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { bag, logo } from "../../constants/images";
 import { SearchInput } from "../searchInput";
+import { useParams } from "react-router-dom";
 
 export const Header = () => {
+  const param = useParams<{slug:string}>();
 
   return (
     <Container>
@@ -10,11 +12,14 @@ export const Header = () => {
         <img src={logo}></img>
       </a>
       <InputSection>
-        <SearchInput
-          text={"Enter item or restaurant you are looking for"}
-          border={true}
-          setSearch={()=>{}}
-        />
+        {
+          !param.slug &&
+          <SearchInput
+            text={"Enter item or restaurant you are looking for"}
+            border={true}
+            setSearch={()=>{}}
+          />
+        }
         <Button style={{ position: "static" }}>
           <img src={bag} />
         </Button>

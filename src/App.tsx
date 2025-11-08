@@ -4,7 +4,7 @@ import { Header } from './components/header';
 import { Footer } from './components/footer';
 import Home from './pages/home';
 import { Route, Routes } from 'react-router';
-import RestaurantPage from './pages/RestaurantPage';
+import RestaurantPage from './pages/restaurantPage';
 
 function App() {
   return (

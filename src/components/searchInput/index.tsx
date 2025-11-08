@@ -5,13 +5,13 @@ import { useState } from "react";
 interface searchProps {
   text: string;
   border: boolean;
-  setSearch: (info: String) => void;
+  setSearch: (info: string) => void;
 }
 
 export const SearchInput = ({ text, border, setSearch }: searchProps) => {
-  const [value, setValue] = useState<String>("");
+  const [value, setValue] = useState<string>("");
 
-  const handleSearch = (value: String) => {
+  const handleSearch = (value: string) => {
     setSearch(value);
   };
 
