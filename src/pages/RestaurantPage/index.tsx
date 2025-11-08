@@ -8,6 +8,7 @@ import { InputSearchDish } from "../../components/InputSearchDish";
 import { DishInfo } from "../../components/dishInfo";
 import { Cart } from "../../components/cart";
 import HourglassLoader from "../../components/hourGlass";
+import { SearchInput } from "../../components/searchInput";
 
 const RestaurantPage = () => {
     const [ restaurant, setRestaurant ] = useState<Restaurant>();
@@ -72,10 +73,10 @@ const RestaurantPage = () => {
                             <div style={{
                                 flexDirection: 'row',
                                 gap: '2rem',
-                                top: '5rem',
+                                top: '3.6rem',
                                 position: 'relative'
                             }}>
-                                <InputSearchDish setDishName={setDishName}/>
+                                <SearchInput text={"Search for dish"} border={false} setSearch={setDishName}/>
                                 <button style={{
                                     width: '10rem',
                                     border: 'none',

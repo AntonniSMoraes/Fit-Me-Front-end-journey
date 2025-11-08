@@ -1,22 +1,20 @@
 import styled from "styled-components";
-import { bag, logo, search } from "../../constants/images";
+import { bag, logo } from "../../constants/images";
+import { SearchInput } from "../searchInput";
 
 export const Header = () => {
+
   return (
     <Container>
       <a href="/">
         <img src={logo}></img>
       </a>
       <InputSection>
-        <InputContainer>
-          <Input
-            type="text"
-            placeholder="Enter item or restaurant you are looking for"
-          />
-          <Button>
-            <img src={search} />
-          </Button>
-        </InputContainer>
+        <SearchInput
+          text={"Enter item or restaurant you are looking for"}
+          border={true}
+          setSearch={()=>{}}
+        />
         <Button style={{ position: "static" }}>
           <img src={bag} />
         </Button>
@@ -41,26 +39,6 @@ const Container = styled.section`
 const InputSection = styled.article`
   display: flex;
   gap: 1rem;
-`;
-
-const InputContainer = styled.article`
-  display: flex;
-  position: relative;
-  
-  @media (max-width: 600px) {
-    display: none;
-  }
-`;
-
-const Input = styled.input`
-  width: 250px;
-  border-radius: 10px;
-  padding: 1rem;
-  font-size: 0.9rem;
-
-  @media (max-width: 600px) {
-    display: none;
-  }
 `;
 
 const Button = styled.button`
