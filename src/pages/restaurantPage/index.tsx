@@ -28,7 +28,8 @@ const RestaurantPage = () => {
 
   return (
     <Container>
-      {restaurant === null || undefined ? (
+      {restaurant?.topDishes.length === 0 ?
+       (
         <section
           style={{
             alignItems: "center",

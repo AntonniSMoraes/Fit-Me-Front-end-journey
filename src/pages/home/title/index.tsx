@@ -53,7 +53,8 @@ const Container = styled.section`
   width: 400px;
 
   @media (max-width: 600px) {
-    width: auto;
+    width: 90%;
+    max-width: 400px;
   }
 `;
 
@@ -63,7 +64,7 @@ const Line = styled.article`
 
   & h1 {
     font-size: 2rem;
-    margin: 1rem 0;
+    margin: .5rem 0;
   }
 
   @media (min-width: 1100px) {
